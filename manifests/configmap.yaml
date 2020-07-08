@@ -4,5 +4,5 @@ metadata:
   name: dojo-java-config
 data:
   # Configuration values can be set as key-value properties
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/postgres"
-  HELLO_ENV: "postgres_app"
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+  HELLO_ENV: postgres_app

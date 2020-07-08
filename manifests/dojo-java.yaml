@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dojo-java
+  labels:
+    app: dojo-java
+spec:
+  containers:
+    - name: dojo-java
+      image: kloiadocker/dojo-java:db
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+            name: dojo-java-config
+        - secretRef:
+            name: database-secret
+
