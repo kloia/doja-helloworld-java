@@ -4,7 +4,7 @@ pipeline {
    stages {
       stage('Hello') {
          steps {
-            sh 'docker build . -t dojo-java:db'
+            sh 'echo hello from test branch'
          }
       }
    }
