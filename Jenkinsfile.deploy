@@ -4,6 +4,7 @@ pipeline {
    stages {
       stage('Create Kind cluster') {
          steps {
+            sh 'kind delete cluster' || true
             sh 'kind create cluster'
          }
       }
