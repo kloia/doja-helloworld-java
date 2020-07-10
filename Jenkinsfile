@@ -2,10 +2,18 @@ pipeline {
    agent any
 
    stages {
-      stage('Hello') {
+      stage ('Pre'){
+         echo 'This is pre pipeline stage'
+      }
+      stage('Docker build') {
          steps {
-            sh 'docker build . -t dojo-java:basic -f Dockerfile.final'
+            sh 'docker build . -t realvega/dojo-java:basic -f Dockerfile.final'
          }
       }
+      stage('Docker push') {
+         steps {
+            sh 'docker push realvega/dojo-java:basic'
+         }
+      }      
    }
 }
