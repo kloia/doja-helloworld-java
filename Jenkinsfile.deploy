@@ -2,9 +2,14 @@ pipeline {
    agent any
 
    stages {
-      stage('Hello') {
+      stage('Create Kind cluster') {
          steps {
-            echo 'Hello World'
+            sh 'kind create cluster'
+         }
+      }
+      stage('Deploy') {
+         steps {
+            sh 'kubectl run dojo-java --image kloiadocker/dojo-java'
          }
       }
    }
