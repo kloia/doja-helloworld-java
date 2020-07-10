@@ -1,6 +1,6 @@
 pipeline {
    agent any
-
+   
    stages {
       stage('Pre') {
          steps {
@@ -13,9 +13,14 @@ pipeline {
          }
       }
       stage('Docker push') {
+        environment {
+            DOCKERHUB_SECRET = credentials('docker-secret')
+        }      
          steps {
+            sh 'docker login -u $DOCKERHUB_SECRET_USR -p $DOCKERHUB_SECRET_PSW'
             sh 'docker push realvega/dojo-java:basic'
          }
       }      
    }
 }
+
