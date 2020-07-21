@@ -16,3 +16,16 @@ spec:
         - secretRef:
             name: database-secret
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dojo-java
+spec:
+  selector:
+    app: dojo-java
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
