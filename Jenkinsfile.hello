@@ -5,7 +5,14 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                echo 'This is the second line'
             }
         }
+        stage('Hello Second') {
+            steps {
+                echo 'Hello World from second stage'
+                echo 'This is the second line from second stage'
+            }
+        }        
     }
 }
