@@ -1,26 +1,22 @@
 pipeline {
    agent any
-   environment {
-      kube_token = credentials('kube-token')
-      kubeconfig_katacoda = credentials('kubeconfig-katacoda')
-   }
    stages {
       stage('Pre') {
          steps {
-            sh "kubectl apply -f manifests/postgres.yaml --token $KUBE_TOKEN --kubeconfig $KUBECONFIG_KATACODA --insecure-skip-tls-verify"
+            sh "kubectl apply -f manifests/postgres.yaml"
          }
       }
       stage('Deploy configurations') {
          steps {
-            sh "kubectl apply -f manifests/configmap.yaml --token $KUBE_TOKEN --kubeconfig $KUBECONFIG_KATACODA --insecure-skip-tls-verify"
-            sh "kubectl apply -f manifests/secret.yaml --token $KUBE_TOKEN --kubeconfig $KUBECONFIG_KATACODA --insecure-skip-tls-verify"         
+            sh "kubectl apply -f manifests/configmap.yaml"
+            sh "kubectl apply -f manifests/secret.yaml"         
          }
       }
       stage('Deploy dojo-java') {
          steps {
             echo 'Waiting for Postgres to be up before deploying dojo-java'
             sh "sleep 120"
-            sh "kubectl apply -f manifests/dojo-java.yaml --token $KUBE_TOKEN --kubeconfig $KUBECONFIG_KATACODA --insecure-skip-tls-verify"      
+            sh "kubectl apply -f manifests/dojo-java.yaml"      
          }
       } 
    }
